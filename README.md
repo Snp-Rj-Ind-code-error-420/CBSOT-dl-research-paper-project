@@ -133,24 +133,54 @@ The dataset contains Machine Learning research paper information including:
 
 # Project Pipeline
 
-```text
-Research Paper Abstract
-            │
-            ▼
-      Text Preprocessing
-            │
-            ├── Named Entity Recognition
-            ├── Keyword Extraction
-            ├── Summarization
-            └── Semantic Embedding Generation
-                        │
-                        ▼
-                 FAISS Index Search
-                        │
-                        ▼
-             Structured Research Insights
-```
+         
+```mermaid
+flowchart LR
 
+subgraph Data
+A[CShorten/ML-ArXiv-Papers Dataset]
+end
+
+subgraph Preprocessing
+B[Text Cleaning]
+C[Tokenization]
+end
+
+subgraph NLP Pipeline
+D[SciBERT NER]
+E[Sentence Embeddings]
+F[KeyBERT]
+G[BART Summarizer]
+end
+
+subgraph Retrieval
+H[FAISS Vector Store]
+I[Semantic Search]
+end
+
+subgraph Output
+J[Named Entities]
+K[Keywords]
+L[Summaries]
+M[Related Papers]
+end
+
+A --> B
+B --> C
+
+C --> D
+C --> E
+C --> F
+C --> G
+
+E --> H
+H --> I
+
+D --> J
+F --> K
+G --> L
+I --> M
+```
 ---
 
 # Technologies Used
